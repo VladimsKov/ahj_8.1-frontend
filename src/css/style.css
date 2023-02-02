@@ -1,0 +1,163 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+#chat {
+  display: flex;
+}
+.input {
+  display: inline-block;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  outline: none;
+}
+.btn-wrap {
+  display: flex;
+  justify-content: center;
+}
+.modal-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+.modal-container {
+  width: 300px;
+  margin: auto;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  background-color: #fff;  
+}
+.modal-name {
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;   
+}
+.modal-btns {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+.modal-btn {
+  margin-left: 15px;
+  text-align: center;
+  user-select: none;
+  padding: .375rem .75rem;
+  font-size: 0.7rem;
+  line-height: 1;
+  border-radius: .2rem;
+  border: 1px solid #ced4da;
+}
+#chat-container {
+  width: 200px;
+  height: 350px;
+  margin-top: 30px;
+  margin-left: 30px;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+.chat-wrap {
+  height: 80%;
+  border-bottom: 1px solid gray;
+}
+.chat-users {
+  height: calc(100% - 10px);
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  padding-bottom: 5px;
+  overflow: auto;        
+}
+.user-elem {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  border: 1px solid gray;
+  border-radius: 50%;
+  background-size: 70%;
+  background-repeat: no-repeat; 
+  background-position: center;
+}
+.user-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;    
+}
+.btn {
+  display: block;
+  margin: auto;
+  padding: .3rem .5rem;
+  user-select: none;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  border: 1px solid #ced4da;
+}
+.chat-msg-wrap {
+  width: 400px;
+  height: 350px;
+  margin-top: 30px;
+  margin-left: 5px;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+.inner-msg-wrap {
+  height: 80%;
+  border-bottom: 1px solid gray;
+}
+.msg-block{
+  height: calc(100% - 10px);
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  padding-bottom: 5px;
+  overflow: auto; 
+}
+.msg-input {
+  margin-top: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;  
+}
+.msg {
+width: 50%;
+margin-bottom: 10px;
+}
+.msg span {
+  font-size: 0.7rem;
+}
+.own-msg {
+margin-left: auto;
+}
+.other-msg {
+margin-right: auto; 
+}
+.hidden {
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
