@@ -3,9 +3,9 @@ import Modals from './modals';
 import ChatContainer from './chat-container';
 import ChatWindow from './chat_window';
 
-const requests = new Requests('http://localhost:7070/');
-const ws = new WebSocket('ws://localhost:7070/');
-
+const requests = new Requests('https://mini-chat-u2vq.onrender.com/');
+const ws = new WebSocket('ws:https://mini-chat-u2vq.onrender.com/');
+// http://localhost:7070/
 document.addEventListener('DOMContentLoaded', () => {
   let activeName = localStorage.getItem('active_name');
   requests.getUsers(activeName);
@@ -94,91 +94,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
-
-/* class SubscriptionApi {
-  constructor(apiUrl) {
-    this.apiUrl = apiUrl;
-  }
-
-  async add(user) {
-    const request = fetch(this.apiUrl + 'subscriptions/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(user),
-    });
-
-    const result = await request;
-
-    if (!result.ok) {
-      console.error('Ошибка');
-
-      return;
-    }
-
-    const json = await result.json();
-    const status = json.status;
-
-    console.log(status);
-  }
-
-} */
-
-// window.api = new SubscriptionApi('http://localhost:7070/subscriptions');
-// window.api.add('alex');
-
-// the first part of lecture: topic - fetch
-/* (async () => {
-  const request = fetch('http://localhost:7070/index');
-  const result = await request;
-  console.log(result);
-  const text = await result.text();
-  console.log(text);
-})(); */
-
-// WEBSOCKETS
-
-/* const ws = new WebSocket('ws://localhost:7070/ws');
-const chat = document.querySelector('.chat');
-const chatMessage = document.querySelector('.chat-message');
-const chatSend = document.querySelector('.chat-send');
-const chatMessages = document.querySelector('.messages');
-chatSend.addEventListener('click', () => {
-  const message = JSON.stringify(chatMessage.value);
-
-  if (!message) return;
-  ws.send(message);
-  chatMessage.value = '';
-});
-
-ws.addEventListener('open', (e) => {
-  console.log(e);
-
-  console.log('ws open');
-});
-
-ws.addEventListener('close', (e) => {
-  console.log(e);
-
-  console.log('ws close');
-});
-
-ws.addEventListener('error', (e) => {
-  console.log(e);
-
-  console.log('ws error');
-});
-ws.addEventListener('message', (e) => {
-  console.log(e);
-  const outData = JSON.parse(e.data);
-  console.log('incoming parset data:');
-  console.log(outData);
-  const { chat: messages } = outData;
-  console.log(messages);
-  chatMessages.replaceChildren();
-  messages.forEach(message => {
-    chatMessages.insertAdjacentHTML('beforeend', `<p>${message}</p>`);
-  });
-  console.log('ws message');
-}); */
