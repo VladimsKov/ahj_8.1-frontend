@@ -4,7 +4,7 @@ import ChatContainer from './chat-container';
 import ChatWindow from './chat_window';
 
 const requests = new Requests('https://mini-chat-u2vq.onrender.com/');
-const ws = new WebSocket('ws:https://mini-chat-u2vq.onrender.com/');
+const ws = new WebSocket('wss://mini-chat-u2vq.onrender.com/');
 // http://localhost:7070/
 document.addEventListener('DOMContentLoaded', () => {
   let activeName = localStorage.getItem('active_name');
