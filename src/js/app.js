@@ -3,9 +3,11 @@ import Modals from './modals';
 import ChatContainer from './chat-container';
 import ChatWindow from './chat_window';
 
-const requests = new Requests('https://mini-chat-u2vq.onrender.com/');
-const ws = new WebSocket('wss://mini-chat-u2vq.onrender.com/');
-// http://localhost:7070/
+//const requests = new Requests('https://mini-chat-u2vq.onrender.com/');
+//const ws = new WebSocket('wss://mini-chat-u2vq.onrender.com/');
+const requests = new Requests('http://localhost:7070/');
+const ws = new WebSocket('ws://localhost:7070/');
+
 document.addEventListener('DOMContentLoaded', () => {
   let activeName = localStorage.getItem('active_name');
   requests.getUsers(activeName);
