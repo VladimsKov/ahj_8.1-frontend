@@ -101,6 +101,11 @@ body {
   border-radius: .25rem;
   border: 1px solid #ced4da;
 }
+.chat-user {
+  margin-top: 10px;
+  font-size: .8rem;
+  text-align: center;
+}
 .chat-msg-wrap {
   width: 400px;
   height: 350px;
@@ -128,18 +133,22 @@ body {
   outline: none;  
 }
 .msg {
-width: 50%;
-margin-bottom: 10px;
+  width: 50%;
+  margin-bottom: 10px;
 }
 .msg span {
   font-size: 0.7rem;
 }
 .own-msg {
-margin-left: auto;
+  margin-left: auto;
 }
 .other-msg {
-margin-right: auto; 
+  margin-right: auto; 
 }
+.active {
+  background-color: gray;
+}
+
 .hidden {
   display: none;
 }

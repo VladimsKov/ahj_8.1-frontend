@@ -14,7 +14,7 @@ export default class Modals {
     const modn = document.forms.set_nickname.nickname;
     modn.focus();
   }
-
+  
   static modalWrap() {
     const modalWrap = document.createElement('div');
     modalWrap.dataset.modal = 'modal-wrap';
@@ -22,7 +22,7 @@ export default class Modals {
     document.body.append(modalWrap);
     return modalWrap;
   }
-
+  
   static closemodal() {
     const modalWrap = document.querySelector('[data-modal=modal-wrap]');
     modalWrap.remove();

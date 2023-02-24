@@ -13,30 +13,31 @@ document.addEventListener('DOMContentLoaded', () => {
   requests.getUsers(activeName);
   if (!activeName) {
     Modals.createModal();
-
+    
     const canselBtn = document.querySelector('#mod-cansel-btn');
     canselBtn.addEventListener('click', () => {
       Modals.closemodal();
       ChatContainer.showInputBtn();
     });
-
+    
     const okBtn = document.querySelector('#mod-ok-btn');
     okBtn.addEventListener('click', () => {
       requests.inputUser(ws);
     });
-
+    
     document.forms.set_nickname
-      .addEventListener('submit', (evt) => {
-        evt.preventDefault();
-        requests.inputUser(ws);
-      });
+    .addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      requests.inputUser(ws);
+    });
   } else {
+    console.log(activeName);
     ChatContainer.showChatUser(activeName);
     ChatContainer.showOutBtn();
     ChatWindow.showChatWindow(ws, requests);
     requests.getMessages();
   }
-
+  
   const inpBtn = document.querySelector('#inp-btn');
   inpBtn.addEventListener('click', () => {
     Modals.createModal();
@@ -44,55 +45,59 @@ document.addEventListener('DOMContentLoaded', () => {
     okBtn.addEventListener('click', () => {
       requests.inputUser(ws);
     });
-
+    
     document.forms.set_nickname
-      .addEventListener('submit', (evt) => {
-        evt.preventDefault();
-        requests.inputUser(ws);
-      });
-
+    .addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      requests.inputUser(ws);
+    });
+    
     const canselBtn = document.querySelector('#mod-cansel-btn');
     canselBtn.addEventListener('click', () => {
       Modals.closemodal();
       ChatContainer.showInputBtn();
     });
   });
-
+  
   const outBtn = document.querySelector('#out-btn');
   outBtn.addEventListener('click', () => {
     requests.outUser(ws, activeName);
   });
-
+  
   ws.addEventListener('message', (evt) => {
     const msg = JSON.parse(evt.data);
     switch (msg.type) {
       case 'false_name':
-        alert('Имя занято. Введите другое имя');
-        break;
+      alert('Имя занято. Введите другое имя');
+      break;
       case 'user_ok':
-        ChatContainer.addUser(msg.name);
-        break;
+      ChatContainer.addUser(msg.name);
+      break;
       case 'input_ok':
-        ChatContainer.showChatUser(msg.added_name);
-        ChatContainer.showOutBtn();
-        ChatWindow.showChatWindow(ws, requests);
-        Modals.closemodal();
-        activeName = msg.added_name;
-        localStorage.setItem('active_name', msg.added_name);
-        requests.getMessages();
-        break;
+      ChatContainer.addUser(msg.added_name);
+      ChatContainer.showChatUser(msg.added_name);
+      ChatContainer.showActiveUser(msg.added_name);
+      ChatContainer.showOutBtn();
+      ChatWindow.showChatWindow(ws, requests);
+      Modals.closemodal();
+      activeName = msg.added_name;
+      localStorage.setItem('active_name', msg.added_name);
+      requests.getMessages();
+      break;
       case 'out_user':
-        ChatContainer.delOutUser(msg.name);
-        break;
+      //ChatContainer.delOutUser(msg.name);
+      requests.getUsers(activeName);
+      break;
       case 'logout':
-        ChatContainer.delChatUser();
-        ChatContainer.showInputBtn();
-        ChatWindow.closeChatWindow();
-        activeName = null;
-        localStorage.removeItem('active_name');
-        break;
+      requests.getUsers(activeName);
+      ChatContainer.delChatUser();
+      ChatContainer.showInputBtn();
+      ChatWindow.closeChatWindow();
+      activeName = null;
+      localStorage.removeItem('active_name');
+      break;
       case 'get_msg':
-        ChatWindow.showMsg(msg.msg_data);
+      ChatWindow.showMsg(msg.msg_data);
     }
   });
 });

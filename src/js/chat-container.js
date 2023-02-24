@@ -8,19 +8,27 @@ export default class ChatContainer {
     </div>
     `);
   }
-
+  
   static showChatUser(nickname) {
     const usersList = document.querySelector('.chat-wrap');
     usersList.insertAdjacentHTML('beforeend', `
     <div class='chat-user'>Чат открыт: <span data-user='active'>${nickname}<span></div>
-    `);
+    `);      
   }
-
+  
+  static showActiveUser(nickname) {
+    const chatUsers = Array.from(document.querySelector('.chat-users').children);
+    const activeUser = chatUsers.find(el => el.lastElementChild.textContent === nickname);
+    if (activeUser) {
+      activeUser.firstElementChild.classList.add('active');
+    }    
+  }
+  
   static delChatUser() {
     const chatUser = document.querySelector('.chat-user');
     chatUser.remove();
   }
-
+  
   static delOutUser(nickname) {
     const usersList = document.querySelectorAll('.user-container');
     for (const elem of usersList) {
@@ -30,18 +38,18 @@ export default class ChatContainer {
       }
     }
   }
-
+  
   static showOutBtn() {
     document.querySelector('#out-btn')
-      .classList.remove('hidden');
+    .classList.remove('hidden');
     document.querySelector('#inp-btn')
-      .classList.add('hidden');
+    .classList.add('hidden');
   }
-
+  
   static showInputBtn() {
     document.querySelector('#out-btn')
-      .classList.add('hidden');
+    .classList.add('hidden');
     document.querySelector('#inp-btn')
-      .classList.remove('hidden');
+    .classList.remove('hidden');
   }
 }
