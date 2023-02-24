@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
       requests.inputUser(ws);
     });
   } else {
-    console.log(activeName);
     ChatContainer.showChatUser(activeName);
     ChatContainer.showOutBtn();
     ChatWindow.showChatWindow(ws, requests);
@@ -84,8 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
       requests.getMessages();
       break;
       case 'out_user':
-      //ChatContainer.delOutUser(msg.name);
-      requests.getUsers(activeName);
+      ChatContainer.delOutUser(msg.name);
       break;
       case 'logout':
       requests.getUsers(activeName);
