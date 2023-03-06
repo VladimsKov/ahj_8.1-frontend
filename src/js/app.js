@@ -8,7 +8,7 @@ const ws = new WebSocket('wss://mini-chat-u2vq.onrender.com/');
 //const requests = new Requests('http://localhost:7070/');
 //const ws = new WebSocket('ws://localhost:7070/');
 document.addEventListener('DOMContentLoaded', () => {
-  let activeName = localStorage.getItem('active_name');
+  let activeName = sessionStorage.getItem('active_name');
   requests.getUsers(activeName);
   if (!activeName) {
     Modals.createModal();
@@ -35,6 +35,12 @@ document.addEventListener('DOMContentLoaded', () => {
     ChatWindow.showChatWindow(ws, requests);
     requests.getMessages();
   }
+  //Закрытие или перезагрузка вкладки браузера
+  
+  window.addEventListener('beforeunload', () => {
+    if (activeName) requests.outUser(ws, activeName);
+    sessionStorage.removeItem('active_name');
+  });
   
   const inpBtn = document.querySelector('#inp-btn');
   inpBtn.addEventListener('click', () => {
@@ -79,7 +85,9 @@ document.addEventListener('DOMContentLoaded', () => {
       ChatWindow.showChatWindow(ws, requests);
       Modals.closemodal();
       activeName = msg.added_name;
-      localStorage.setItem('active_name', msg.added_name);
+      //localStorage.setItem('active_name', msg.added_name);
+      sessionStorage.setItem('active_name', msg.added_name);
+      
       requests.getMessages();
       break;
       case 'out_user':
@@ -91,7 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
       ChatContainer.showInputBtn();
       ChatWindow.closeChatWindow();
       activeName = null;
-      localStorage.removeItem('active_name');
+      //localStorage.removeItem('active_name');
+      sessionStorage.removeItem('active_name');
       break;
       case 'get_msg':
       ChatWindow.showMsg(msg.msg_data);
